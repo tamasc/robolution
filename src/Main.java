@@ -6,13 +6,14 @@ public class Main {
         int map = 0;
         while (map == 0) {
             System.out.println("Please, choose a map by entering a number between 1 and 6");
+            // TODO: handle not int values
             Scanner sc = new Scanner(System.in);
             int input = sc.nextInt();
             if (input > 0 && input < 7) {
                 map = input;
                 break;
             }
-            System.out.printf("Wrong number\n");
+            System.out.println("Wrong number");
         }
 
         Game game = new Game(map);

@@ -1,21 +1,33 @@
 public class Robot {
+    public int[] getPosition() {
+        return position;
+    }
+
     private int[] position = {0, 5};
 
     private String soul = "These violent delights have violent ends";
 
-    public void move(String direction) {
+    public void move(Character direction) {
         switch (direction) {
-            case "up":
-                position[1]--;
+            case 'u':
+                if (position[1] > 0) {
+                    position[1]--;
+                }
                 break;
-            case "down":
-                position[1]++;
+            case 'd':
+                if (position[1] < 5) {
+                    position[1]++;
+                }
                 break;
-            case "left":
-                position[0]--;
+            case 'l':
+                if (position[0] > 0) {
+                    position[0]--;
+                }
                 break;
-            case "right":
-                position[0]++;
+            case 'r':
+                if (position[0] < 5) {
+                    position[0]++;
+                }
                 break;
         }
     }

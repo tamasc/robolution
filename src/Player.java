@@ -1,22 +1,30 @@
-import java.util.Map;
+import java.util.*;
 
 public class Player {
-    public Map<String, Integer> actions;
+    public Map<String, Integer> actionStore;
+    public List<Character> actions;
 
-    public Player(Map<String, Integer> actions) {
-        this.actions = actions;
-    }
-
-    public Map <String, Integer> getActions() {
+    public List <Character> getActions() {
         return actions;
     }
 
-    public void setActions(Map <String, Integer> actions) {
+    public void setActions(List <Character> actions) {
         this.actions = actions;
     }
 
+    public Player(Map<String, Integer> actionStore) {
+        this.actionStore = actionStore;
+    }
+
+    public Map <String, Integer> getActionStore() {
+        return actionStore;
+    }
+
+    public void setActionStore(Map <String, Integer> actions) {
+        this.actionStore = actions;
+    }
+
     public int getActionCount() {
-//        return this.actions.entrySet().stream().mapToInt(Map.Entry::getValue).sum();
-        return 3;
+        return this.actionStore.entrySet().stream().mapToInt(Map.Entry::getValue).sum();
     }
 }

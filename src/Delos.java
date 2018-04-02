@@ -4,14 +4,15 @@ import java.util.Map;
 
 public class Delos {
     int[][] map;
-    Robot robot;
+    int[] stationPosition = {0, 4};
+    Map<String, Integer> actionStore = new HashMap<String, Integer>();
 
     int[][] map1 = {
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 1, 1, 1, 0 },
+            {0, 0, 1, 1, 1, 0 },
+            {0, 0, 1, 1, 1, 0 },
     };
     int[][] map2 = {
             {0, 0, 0, 0, 0, 0 },
@@ -49,23 +50,19 @@ public class Delos {
             {0, 0, 0, 0, 0, 0 },
     };
 
-    Map<String, Integer> actions = new HashMap<String, Integer>();
-
-    public Map<String, Integer> getActions() {
-        return actions;
-    }
-
-    public void setActions(Map<String, Integer> actions) {
-        this.actions = actions;
+    public Map<String, Integer> getActionStore() {
+        // we dont want to mutate the actionStore of a map
+        return new HashMap<String, Integer>(this.actionStore);
     }
 
     public Delos(int map) {
-        actions.put("left", 3);
-        actions.put("right", 3);
-        actions.put("up", 3);
-        actions.put("down", 3);
-        actions.put("repeat", 3);
-        actions.put("blowUp", 3);
+        // TODO: outsource maps, their stores and station position
+        this.actionStore.put("left", 2);
+        this.actionStore.put("right", 4);
+        this.actionStore.put("up", 4);
+        this.actionStore.put("down", 3);
+        this.actionStore.put("multiply", 0);
+        this.actionStore.put("blowUp", 0);
         switch (map) {
             case 1:
                 this.map = this.map1;
