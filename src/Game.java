@@ -6,12 +6,14 @@ public class Game {
     private Delos delos;
     private Robot robot;
     private Player player;
+    private Renderer renderer;
 
     public Game(int map) {
         System.out.println("" + map);
         this.delos = new Delos(map);
         this.player = new Player(this.delos.getActionStore());
         this.robot = new Robot();
+        this.renderer = new Renderer(this.robot, this.delos, "Industrial Robolution in Delos", 500, 500);
         /* TODO: print map */
         this.printRemainingPlayerActions();
         System.out.println("Please choose your next action by typing its corresponding character!");
@@ -27,13 +29,15 @@ public class Game {
         char lastChar = 'x';
         List<Character> actions = new ArrayList<>();
         while (lastChar != 'e' && this.player.getActionCount() > 0) {
-            this.clearConsole();
+            Renderer.clearConsole();
             this.printRemainingPlayerActions();
-            System.out.println("Type the first character of an action to choose one.");
+            System.out.println("Type the first character of an action to choose one or type 'e' to exit:");
             Scanner sc = new Scanner(System.in);
             lastChar = sc.next().charAt(0);
             if (this.isValidPlayerAction(lastChar)) {
                 actions.add(lastChar);
+            } else if (lastChar != 'e') {
+                System.out.println("You finished ");
             } else {
                 System.out.println("You either typed a wrong character or you have no more action of the given type!");
             }
@@ -88,10 +92,4 @@ public class Game {
     private boolean hasPlayerWon() {
         return  Arrays.equals(this.robot.getPosition(), this.delos.stationPosition);
     }
-
-    public final static void clearConsole() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
 }

@@ -5,6 +5,7 @@ public class Main {
         System.out.println("Welcome to the Industrial Robolution");
         int map = 0;
         while (map == 0) {
+            Renderer.clearConsole();
             System.out.println("Please, choose a map by entering a number between 1 and 6");
             // TODO: handle not int values
             Scanner sc = new Scanner(System.in);
