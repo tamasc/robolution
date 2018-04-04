@@ -6,13 +6,15 @@ public class Game {
     private Delos delos;
     private Robot robot;
     private Player player;
+    private Renderer renderer;
 
     public Game(int map) {
-        System.out.println("" + map);
         this.delos = new Delos(map);
         this.player = new Player(this.delos.getActionStore());
         this.robot = new Robot();
-        /* TODO: print map */
+        this.renderer = new Renderer(this.delos, this.robot);
+        Renderer.clearConsole();
+        this.renderer.printMap();
         this.printRemainingPlayerActions();
         System.out.println("Please choose your next action by typing its corresponding character!");
         this.player.setActions(this.getPlayerActions());
@@ -27,7 +29,7 @@ public class Game {
         char lastChar = 'x';
         List<Character> actions = new ArrayList<>();
         while (lastChar != 'e' && this.player.getActionCount() > 0) {
-            this.clearConsole();
+            Renderer.clearConsole();
             this.printRemainingPlayerActions();
             System.out.println("Type the first character of an action to choose one.");
             Scanner sc = new Scanner(System.in);
@@ -78,6 +80,7 @@ public class Game {
     private void launchRailBuilding() {
         for (Character action : this.player.getActions()) {
             this.robot.move(action);
+            this.renderer.printMap();
             if (this.hasPlayerWon()) {
                 System.out.println("Yeahh");
                 return;
@@ -86,12 +89,7 @@ public class Game {
     }
 
     private boolean hasPlayerWon() {
-        return  Arrays.equals(this.robot.getPosition(), this.delos.stationPosition);
-    }
-
-    public final static void clearConsole() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        return  Arrays.equals(this.robot.position, this.delos.stationPosition);
     }
 
 }

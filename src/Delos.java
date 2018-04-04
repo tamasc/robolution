@@ -5,44 +5,50 @@ import java.util.Map;
 public class Delos {
     int[][] map;
     int[] stationPosition = {0, 4};
-    Map<String, Integer> actionStore = new HashMap<String, Integer>();
+    private Map<String, Integer> actionStore = new HashMap<String, Integer>();
 
-    int[][] map1 = {
+    private int[][] map1 = {
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 1, 1, 1, 0 },
             {0, 0, 1, 1, 1, 0 },
             {0, 0, 1, 1, 1, 0 },
+            {0, 0, 1, 1, 1, 0 },
     };
-    int[][] map2 = {
+    private int[][] map2 = {
             {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-    };
-    int[][] map3 = {
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
     };
-    int[][] map4 = {
+    private int[][] map3 = {
             {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-            {0, 0, 0, 0, 0, 0 },
-    };
-    int[][] map5 = {
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
     };
-    int[][] map6 = {
+    private int[][] map4 = {
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+    };
+    private int[][] map5 = {
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+            {0, 0, 0, 0, 0, 0 },
+    };
+    private int[][] map6 = {
+            {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
             {0, 0, 0, 0, 0, 0 },
@@ -57,13 +63,12 @@ public class Delos {
 
     public Delos(int map) {
         // TODO: outsource maps, their stores and station position
-        this.actionStore.put("left", 2);
-        this.actionStore.put("right", 4);
-        this.actionStore.put("up", 4);
-        this.actionStore.put("down", 3);
-        this.actionStore.put("multiply", 0);
-        this.actionStore.put("blowUp", 0);
-        switch (map) {
+        this.setActionStore();
+        this.setMap(map);
+    }
+
+    private void setMap(int mapNumber) {
+        switch (mapNumber) {
             case 1:
                 this.map = this.map1;
                 break;
@@ -83,6 +88,15 @@ public class Delos {
                 this.map = this.map6;
                 break;
         }
+    }
+
+    private void setActionStore() {
+        this.actionStore.put("left", 2);
+        this.actionStore.put("right", 4);
+        this.actionStore.put("up", 4);
+        this.actionStore.put("down", 3);
+        this.actionStore.put("multiply", 0);
+        this.actionStore.put("blowUp", 0);
     }
 
     public boolean checkPostionValidy(int[] position) {

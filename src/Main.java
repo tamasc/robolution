@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]) {
+        Renderer.clearConsole();
         System.out.println("Welcome to the Industrial Robolution");
         int map = 0;
         while (map == 0) {

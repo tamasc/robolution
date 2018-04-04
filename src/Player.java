@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Player {
-    public Map<String, Integer> actionStore;
-    public List<Character> actions;
+    private Map<String, Integer> actionStore;
+    private List<Character> actions;
 
     public List <Character> getActions() {
         return actions;
