@@ -29,17 +29,18 @@ public class Game {
         char lastChar = 'x';
         List<Character> actions = new ArrayList<>();
         while (lastChar != 'e' && this.player.getActionCount() > 0) {
-            Renderer.clearConsole();
             this.printRemainingPlayerActions();
             System.out.println("Type the first character of an action to choose one.");
             Scanner sc = new Scanner(System.in);
             lastChar = sc.next().charAt(0);
             if (this.isValidPlayerAction(lastChar)) {
                 actions.add(lastChar);
+            } else if (lastChar != 'e') {
+                System.out.println("Your actions are");
+                System.out.println(actions);
             } else {
                 System.out.println("You either typed a wrong character or you have no more action of the given type!");
             }
-            System.out.println(actions);
         }
         return actions;
     }
@@ -79,13 +80,14 @@ public class Game {
 
     private void launchRailBuilding() {
         for (Character action : this.player.getActions()) {
-            this.robot.move(action);
+            this.robot.move(action, this.delos);
             this.renderer.printMap();
             if (this.hasPlayerWon()) {
-                System.out.println("Yeahh");
+                System.out.println("Yeahh, you have won!");
                 return;
             }
         }
+        this.gameOver();
     }
 
     private boolean hasPlayerWon() {

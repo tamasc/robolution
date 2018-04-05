@@ -16,7 +16,7 @@ public class Renderer {
 
     public void printMap() {
 
-        System.out.println("________");
+        System.out.println("--------");
         for(int i = 0; i < this.delos.map.length; i++) {
             for(int j = 0; j < this.delos.map[i].length; j++) {
                 if (j == 0) {
@@ -40,7 +40,7 @@ public class Renderer {
             }
             System.out.print("\n");
         }
-        System.out.println("________");
+        System.out.println("--------");
     }
 
     private boolean isRobotsPosition(int[] mapPostion) {
